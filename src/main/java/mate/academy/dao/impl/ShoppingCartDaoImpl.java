@@ -1,5 +1,6 @@
 package mate.academy.dao.impl;
 
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.criteria.JoinType;
 import java.util.Optional;
 import mate.academy.dao.ShoppingCartDao;
@@ -55,9 +56,8 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             criteriaQuery.where(criteriaBuilder.equal(root.get("user"), user));
             return Optional.ofNullable(session.createQuery(criteriaQuery)
                     .getSingleResult());
-        } catch (Exception e) {
-            throw new DataProcessingException("Can't get shopping cart by user: "
-                    + user, e);
+        } catch (NoResultException e) {
+            return Optional.empty();
         }
     }
 
