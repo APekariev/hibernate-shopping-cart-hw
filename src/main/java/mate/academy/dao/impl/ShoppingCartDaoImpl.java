@@ -82,26 +82,4 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             }
         }
     }
-
-    @Override
-    public void delete(ShoppingCart shoppingCart) {
-        Session session = null;
-        Transaction transaction = null;
-        try {
-            session = sessionFactory.openSession();
-            transaction = session.beginTransaction();
-            session.remove(shoppingCart);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can't remover shopping cart "
-                    + shoppingCart + " from the database",e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-    }
 }

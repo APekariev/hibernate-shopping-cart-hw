@@ -2,8 +2,6 @@ package mate.academy.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
@@ -15,7 +13,6 @@ import java.util.List;
 @Table(name = "Shopping cart")
 public class ShoppingCart {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @OneToMany
     private List<Ticket> tickets;
